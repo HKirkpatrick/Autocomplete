@@ -16,7 +16,7 @@ public class Term implements Comparable<Term>
         this.weight = weight;
     }
     
-    // byReverseWeightOrder class
+    // ReverseWeightOrder class
     private static class ReverseWeightOrder extends Comparator<Term>
     {
         public int compare(Term o1, Term o2)
@@ -31,40 +31,32 @@ public class Term implements Comparable<Term>
         return new ReverseWeightOrder();
     }
     
-    // byReverseWeightOrder class
-    private static class ReverseWeightOrder extends Comparator<Term>
+    // PrefixOrder class
+    private static class PrefixOrder extends Comparator<Term>
     {
         public final int r;
         
-        public ReverseWeightOrder(int r)
+        public PrefixOrder(int r)
         {
             this.r = r;
         }
         
         public int comparator(Term o1, Term o2)
         {
-            
-            
+            return o1.query.substring(0,r).compareTo(o2.query.substring(0,r));
         }
     }
 
     // Compares the two terms in lexicographic order but using only the first r characters of each query.
     public static Comparator<Term> byPrefixOrder(int r)
     {
-        
+        return new PrefixOrder(r);
     }
 
     // Compares the two terms in lexicographic order by query.
     public int compareTo(Term that)
     {
-        for(int i = 0; i < this.query.length && i < that.query.length; i++)
-        {
-            if(this.query.charAt(i) < that.query.charAt(i))
-                return 1;
-            else if (this.query.charAt(i) > that.query.charAt(i))
-                return -1;
-        }
-        return that.query.length - this.query.length;
+        return this.query.compareTo(that.query);
     }
 
     // Returns a string representation of this term in the following format:
