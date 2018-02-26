@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import edu.princeton.cs.algs4.StdOut;
 
 public class Autocomplete {
     private final Term[] terms;
@@ -32,16 +33,25 @@ public class Autocomplete {
         int start, end;
         Term p = new Term(prefix, 0);
         start = BinarySearchDeluxe.firstIndexOf(terms, p, Term.byPrefixOrder(r));
-        end = BinarySearchDeluxe.lastIndexOf(terms, p, Term.byPrefixOrder(r));
-        if (start < 0 || end < 0) {
+        StdOut.println(start);
+        if (start < 0)
             return 0;
-        }
+        end = BinarySearchDeluxe.lastIndexOf(terms, p, Term.byPrefixOrder(r));
+        StdOut.println(end);
         return end - start + 1;
     }
 
-    // unit testing (required)
+    // unit testing
     public static void main(String[] args)
     {
-        
+        Term[] terms = {new Term("testing",10), new Term("testing more",5),
+                        new Term("testing still",2), new Term("not testing",4)};
+        Autocomplete a = new Autocomplete(terms);
+        Term[] t = a.allMatches("test");
+        StdOut.println(a.numberOfMatches("test"));
+        for (Term term : t)
+        {
+            StdOut.println(term);
+        }
     }
 }

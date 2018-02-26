@@ -1,4 +1,5 @@
 import java.util.Comparator;
+import edu.princeton.cs.algs4.StdOut;
 
 public class BinarySearchDeluxe {
 
@@ -9,6 +10,8 @@ public class BinarySearchDeluxe {
         int mid;
         while (hi >= lo) {
             mid = lo + (hi - lo)/2;
+            StdOut.println("mid = " + mid);
+            StdOut.println("key = " + a[mid]);
             if (comparator.compare(key, a[mid]) < 0)
                 hi = mid - 1;
             else if (comparator.compare(key,a[mid]) > 0)
@@ -36,7 +39,7 @@ public class BinarySearchDeluxe {
             else if (mid == a.length - 1 || comparator.compare(key, a[mid+1]) < 0)
                 return mid;
             else
-                lo = mid -1;
+                lo = mid + 1;
         }
         return -1;
     }

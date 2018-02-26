@@ -1,5 +1,7 @@
 import java.util.Comparator;
 
+import edu.princeton.cs.algs4.StdOut;
+
 public class Term implements Comparable<Term>
 {
     // query string
@@ -75,12 +77,17 @@ public class Term implements Comparable<Term>
     // the weight, followed by a tab, followed by the query.
     public String toString()
     {
-        return weight + '\t' + query;
+        return weight + "\t" + query;
     }
 
-    // unit testing (required)
+    // unit testing
     public static void main(String[] args)
     {
-        
+        Term t1 = new Term("Hello",10);
+        Term t2 = new Term("Help me",5);
+        StdOut.println(byReverseWeightOrder().compare(t1,t2));
+        StdOut.println(byPrefixOrder(5).compare(t1,t2));
+        StdOut.println(t1.compareTo(t2));
+        StdOut.println(t1.toString());
     }
 }
