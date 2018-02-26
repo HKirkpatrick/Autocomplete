@@ -3,8 +3,8 @@
  *  NetID: adameh
  *  Precept: P04B  
  *
- *  Partner Name: Hudson       
- *  Partner NetID: Kirkpatrick      
+ *  Partner Name: Hudson Kirkpatrick       
+ *  Partner NetID: hbk      
  *  Partner Precept: P05B    
  *
  *  Hours to complete assignment (optional): 3
@@ -35,8 +35,8 @@ sorted).
  *****************************************************************************/
 
 Autocomplete() :
-We used Arrays.sort(), which uses quicksort for arrays larger than 10 and
-insertion sort otherwise.
+We used Arrays.sort(), which uses mergesort for arrays of objects (Strings
+in our case).
 allMatches() :
 We also used Arrays.sort() for this.
 numberOfMatches() :
@@ -53,18 +53,21 @@ integers. It calls firstIndexOf and lastIndexOf, which both use binary search.
  *****************************************************************************/
 
 Autocomplete():
+Arrays.sort() runs mergesort, and guarantees O(nlogn) runtime
+worst case.
 
 allMatches():
+allMatches() also uses Arrays.sort(), and guarantees O(nlogn) runtime
+worst case.
 
 numberOfMatches():
-
-
-
+Our implementation uses a form of quicksearch, which runs in
+O(logn) worst case.
 
 /******************************************************************************
  *  Known bugs / limitations.
  *****************************************************************************/
-
+None.
 
 /******************************************************************************
  *  Describe whatever help (if any) that you received.
@@ -75,20 +78,20 @@ numberOfMatches():
  *  Also include any resources (including the web) that you may
  *  may have used in creating your design.
  *****************************************************************************/
-
+None
 
 /******************************************************************************
  *  Describe any serious problems you encountered.                    
  *****************************************************************************/
-
+None
 
 /******************************************************************************
  *  If you worked with a partner, assert below that you followed
  *  the protocol as described on the assignment page. Give one
  *  sentence explaining what each of you contributed.
  *****************************************************************************/
-
-
+We followed the protocol. We worked on all the parts together, concurrently
+on separate computers through git.
 
 
 /******************************************************************************
@@ -96,6 +99,6 @@ numberOfMatches():
  *  on how much you learned from doing the assignment, and whether    
  *  you enjoyed doing it.                                             
  *****************************************************************************/
-
+None. Enjoyed it!
   
 
