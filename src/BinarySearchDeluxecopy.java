@@ -5,19 +5,16 @@ public class BinarySearchDeluxe {
         int hi = a.length - 1;
         int lo = 0;
         int mid;
-        while(hi > lo) {
+        while (hi >= lo) {
             mid = lo + (hi - lo)/2;
-            if(comparator.compare(key, a[mid]) < 0)
+            if (comparator.compare(key, a[mid]) < 0)
                 hi = mid - 1;
-            else if(key > a[mid])
+            else if (comparator.compare(key,a[mid]))
                 lo = mid + 1;
-            else if(mid == 0 || comparator.compare(key, a[mid-1]) < 0)
+            else if (mid == 0 || comparator.compare(key, a[mid-1]) < 0)
                 return mid;
         }
-        if(comparator.compare(key, a[lo]) == 0)
-            return lo;
-        else
-            return -1;
+        return -1;
     }
 
     // Returns the index of the last key in a[] that equals the search key, or -1 if no such key.
