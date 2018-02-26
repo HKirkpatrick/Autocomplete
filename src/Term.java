@@ -1,5 +1,4 @@
 import java.util.Comparator;
-import edu.princeton.cs.algs4.StdOut;
 
 public class Term implements Comparable<Term>
 {
@@ -76,7 +75,7 @@ public class Term implements Comparable<Term>
     // the weight, followed by a tab, followed by the query.
     public String toString()
     {
-        StdOut.println(weight + '\t' + query);
+        return weight + '\t' + query;
     }
 
     // unit testing (required)
