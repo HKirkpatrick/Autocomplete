@@ -50,6 +50,11 @@ public class Term implements Comparable<Term>
     // Compares the two terms in lexicographic order but using only the first r characters of each query.
     public static Comparator<Term> byPrefixOrder(int r)
     {
+        if (r < 0)
+        {
+            throw new IllegalArgumentException();
+        }
+        
         return new PrefixOrder(r);
     }
 
