@@ -10,8 +10,8 @@ public class Autocomplete {
 		int i = BinarySearchDeluxe.firstIndexOf(terms, new Term(prefix, 0), Terms.byPrefixOrder(r));
 		int size = numberOfMatches(prefix);
 		Term[] matches = new Term[size];
-		for(; i < size; i++) {
-			matches[i] = terms[i];	
+		for(int j = 0; j < size; j++) {
+			matches[j] = terms[i++];	
 		}	
 		return matches;
 	}
