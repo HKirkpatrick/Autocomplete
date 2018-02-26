@@ -1,5 +1,5 @@
 #!/bin/sh
 
 find .. -name \*.java > sources
-javac -cp ../jars @sources -d ../bin
+javac -cp ../jars/* @sources -d ../bin -Xlint
 

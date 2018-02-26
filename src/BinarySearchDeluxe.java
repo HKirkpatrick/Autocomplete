@@ -1,3 +1,5 @@
+import java.util.Comparator;
+
 public class BinarySearchDeluxe {
 
     // Returns the index of the first key in a[] that equals the search key, or -1 if no such key.

@@ -1,3 +1,6 @@
+import java.util.Comparator;
+import edu.princeton.cs.algs4.StdOut;
+
 public class Term implements Comparable<Term>
 {
     // query string
@@ -17,11 +20,16 @@ public class Term implements Comparable<Term>
     }
     
     // ReverseWeightOrder class
-    private static class ReverseWeightOrder extends Comparator<Term>
+    private static class ReverseWeightOrder implements Comparator<Term>
     {
         public int compare(Term o1, Term o2)
         {
-            return o2.weight - o1.weight;
+            if (o1.weight < o2.weight)
+                return 1;
+            else if (o1.weight > o2.weight)
+                return -1;
+            else
+                return 0;
         }
     }
 
@@ -32,7 +40,7 @@ public class Term implements Comparable<Term>
     }
     
     // PrefixOrder class
-    private static class PrefixOrder extends Comparator<Term>
+    private static class PrefixOrder implements Comparator<Term>
     {
         public final int r;
         
@@ -41,7 +49,7 @@ public class Term implements Comparable<Term>
             this.r = r;
         }
         
-        public int comparator(Term o1, Term o2)
+        public int compare(Term o1, Term o2)
         {
             return o1.query.substring(0,r).compareTo(o2.query.substring(0,r));
         }
