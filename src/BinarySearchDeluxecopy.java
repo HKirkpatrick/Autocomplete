@@ -9,7 +9,7 @@ public class BinarySearchDeluxe {
             mid = lo + (hi - lo)/2;
             if (comparator.compare(key, a[mid]) < 0)
                 hi = mid - 1;
-            else if (comparator.compare(key,a[mid]))
+            else if (comparator.compare(key,a[mid]) > 0)
                 lo = mid + 1;
             else if (mid == 0 || comparator.compare(key, a[mid-1]) < 0)
                 return mid;
