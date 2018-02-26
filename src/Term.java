@@ -1,3 +1,16 @@
+/******************************************************************************
+ *  Name:    Hudson Kirkpatrick
+ *  NetID:   hbk
+ *  Precept: P05B
+ *
+ *  Partner Name:    Adam Hazelton
+ *  Partner NetID:   adameh
+ *  Partner Precept: P04B
+ *
+ *  Description:  Blah
+ ******************************************************************************/
+
+
 import java.util.Comparator;
 
 import edu.princeton.cs.algs4.StdOut;
@@ -43,8 +56,10 @@ public class Term implements Comparable<Term>
     // PrefixOrder class
     private static class PrefixOrder implements Comparator<Term>
     {
+        // length of prefix to be considered
         public final int r;
         
+        // constructs PrefixOrder object
         public PrefixOrder(int r)
         {
             this.r = r;
@@ -52,23 +67,25 @@ public class Term implements Comparable<Term>
         
         public int compare(Term o1, Term o2)
         {
-            for(int i = 0; i < r && i < o1.query.length() && i < o2.query.length(); i++)
+            for (int i = 0; i < r && i < o1.query.length() &&
+                i < o2.query.length(); i++)
             {
                 if (o1.query.charAt(i) < o2.query.charAt(i))
                     return -1;
                 else if (o1.query.charAt(i) > o2.query.charAt(i))
                     return 1;
             }
-            if(o1.query.length() < o2.query.length() && o1.query.length() < r)
+            if (o1.query.length() < o2.query.length() && o1.query.length() < r)
                 return -1;
-            else if(o2.query.length() < o1.query.length() && o2.query.length() < r)
+            else if (o2.query.length() < o1.query.length() && o2.query.length() < r)
                 return 1;
             else
                 return 0;
         }
     }
 
-    // Compares the two terms in lexicographic order but using only the first r characters of each query.
+    // Compares the two terms in lexicographic order but using only the
+    // first r characters of each query.
     public static Comparator<Term> byPrefixOrder(int r)
     {
         if (r < 0)
@@ -95,10 +112,10 @@ public class Term implements Comparable<Term>
     // unit testing
     public static void main(String[] args)
     {
-        Term t1 = new Term("Hello",10);
-        Term t2 = new Term("Help me",5);
-        StdOut.println(byReverseWeightOrder().compare(t1,t2));
-        StdOut.println(byPrefixOrder(5).compare(t1,t2));
+        Term t1 = new Term("Hello", 10);
+        Term t2 = new Term("Help me", 5);
+        StdOut.println(byReverseWeightOrder().compare(t1, t2));
+        StdOut.println(byPrefixOrder(5).compare(t1, t2));
         StdOut.println(t1.compareTo(t2));
         StdOut.println(t1.toString());
     }

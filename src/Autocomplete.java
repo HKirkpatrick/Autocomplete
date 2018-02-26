@@ -1,19 +1,36 @@
+/******************************************************************************
+ *  Name:    Hudson Kirkpatrick
+ *  NetID:   hbk
+ *  Precept: P05B
+ *
+ *  Partner Name:    Adam Hazelton
+ *  Partner NetID:   adameh
+ *  Partner Precept: P04B
+ *
+ *  Description:  Blah
+ ******************************************************************************/
+
 import java.util.Arrays;
 import edu.princeton.cs.algs4.StdOut;
 
 public class Autocomplete {
+    // stores the terms
     private final Term[] terms;
     
     // Initializes the data structure from the given array of terms.
     public Autocomplete(Term[] terms)
     {
-        if(terms == null)
+        if (terms == null)
         {
             throw new IllegalArgumentException();
         }
         this.terms = new Term[terms.length];
-        for(int i = 0; i < terms.length; i++)
+        for (int i = 0; i < terms.length; i++)
         {
+            if (terms[i] == null)
+            {
+                throw new IllegalArgumentException();
+            }
             this.terms[i] = terms[i];
         }
         Arrays.sort(this.terms);
@@ -21,20 +38,31 @@ public class Autocomplete {
 
     // Returns all terms that start with the given prefix, in
     // descending order of weight.
-    public Term[] allMatches(String prefix) {
+    public Term[] allMatches(String prefix)
+    {
+        if (prefix == null)
+        {
+            throw new IllegalArgumentException();
+        }
         int r = prefix.length();
         int i = BinarySearchDeluxe.firstIndexOf(terms,
-                                                new Term(prefix, 0), Term.byPrefixOrder(r));
+                                                new Term(prefix, 0),
+                                                Term.byPrefixOrder(r));
         int size = numberOfMatches(prefix);
         Term[] matches = new Term[size];
         for (int j = 0; j < size; j++) {
             matches[j] = terms[i++];
         }
-        Arrays.sort(matches,Term.byReverseWeightOrder);
+        Arrays.sort(matches, Term.byReverseWeightOrder());
+        return matches;
     }
     
     // Returns the number of terms that start with the given prefix.
     public int numberOfMatches(String prefix) {
+        if (prefix == null)
+        {
+            throw new IllegalArgumentException();
+        }
         int r = prefix.length();
         int start, end;
         Term p = new Term(prefix, 0);
