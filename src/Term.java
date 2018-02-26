@@ -5,10 +5,10 @@ import edu.princeton.cs.algs4.StdOut;
 public class Term implements Comparable<Term>
 {
     // query string
-    public final String query;
+    private final String query;
     
     // weight
-    public final long weight;
+    private final long weight;
     
     // Initializes a term with the given query string and weight.
     public Term(String query, long weight)
@@ -52,7 +52,19 @@ public class Term implements Comparable<Term>
         
         public int compare(Term o1, Term o2)
         {
-            return o1.query.substring(0,r).compareTo(o2.query.substring(0,r));
+            for(int i = 0; i < r && i < o1.query.length() && i < o2.query.length(); i++)
+            {
+                if (o1.query.charAt(i) < o2.query.charAt(i))
+                    return -1;
+                else if (o1.query.charAt(i) > o2.query.charAt(i))
+                    return 1;
+            }
+            if(o1.query.length() < o2.query.length() && o1.query.length() < r)
+                return -1;
+            else if(o2.query.length() < o1.query.length() && o2.query.length() < r)
+                return 1;
+            else
+                return 0;
         }
     }
 

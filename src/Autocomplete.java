@@ -11,22 +11,28 @@ public class Autocomplete {
         {
             throw new IllegalArgumentException();
         }
-        this.terms = terms;
-        Arrays.sort(terms);
+        this.terms = new Term[terms.length];
+        for(int i = 0; i < terms.length; i++)
+        {
+            this.terms[i] = terms[i];
+        }
+        Arrays.sort(this.terms);
     }
 
-    // Returns all terms that start with the given prefix, in descending order of weight.
+    // Returns all terms that start with the given prefix, in
+    // descending order of weight.
     public Term[] allMatches(String prefix) {
         int r = prefix.length();
-        Term p = new Term(prefix, 0);
-        int i = BinarySearchDeluxe.firstIndexOf(terms, new Term(prefix, 0), Term.byPrefixOrder(r));
+        int i = BinarySearchDeluxe.firstIndexOf(terms,
+                                                new Term(prefix, 0), Term.byPrefixOrder(r));
         int size = numberOfMatches(prefix);
         Term[] matches = new Term[size];
-        for(int j = 0; j < size; j++) {
+        for (int j = 0; j < size; j++) {
             matches[j] = terms[i++];
         }
-        return matches;
+        Arrays.sort(matches,Term.byReverseWeightOrder);
     }
+    
     // Returns the number of terms that start with the given prefix.
     public int numberOfMatches(String prefix) {
         int r = prefix.length();
@@ -36,15 +42,14 @@ public class Autocomplete {
         if (start < 0)
             return 0;
         end = BinarySearchDeluxe.lastIndexOf(terms, p, Term.byPrefixOrder(r));
-        StdOut.println(end);
         return end - start + 1;
     }
 
     // unit testing
     public static void main(String[] args)
     {
-        Term[] terms = {new Term("testing",10), new Term("testing more",5),
-                        new Term("testing still",2), new Term("not testing",4)};
+        Term[] terms = {new Term("testing", 10), new Term("testing more", 5),
+                        new Term("testing still", 2), new Term("not testing", 4)};
         Autocomplete a = new Autocomplete(terms);
         StdOut.println(a.numberOfMatches("test"));
         Term[] t = a.allMatches("test");
