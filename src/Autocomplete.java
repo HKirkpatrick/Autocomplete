@@ -33,7 +33,6 @@ public class Autocomplete {
         int start, end;
         Term p = new Term(prefix, 0);
         start = BinarySearchDeluxe.firstIndexOf(terms, p, Term.byPrefixOrder(r));
-        StdOut.println(start);
         if (start < 0)
             return 0;
         end = BinarySearchDeluxe.lastIndexOf(terms, p, Term.byPrefixOrder(r));
@@ -47,8 +46,8 @@ public class Autocomplete {
         Term[] terms = {new Term("testing",10), new Term("testing more",5),
                         new Term("testing still",2), new Term("not testing",4)};
         Autocomplete a = new Autocomplete(terms);
-        Term[] t = a.allMatches("test");
         StdOut.println(a.numberOfMatches("test"));
+        Term[] t = a.allMatches("test");
         for (Term term : t)
         {
             StdOut.println(term);

@@ -8,15 +8,14 @@ public class BinarySearchDeluxe {
         int hi = a.length - 1;
         int lo = 0;
         int mid;
-        while (hi >= lo) {
+        while (hi >= lo)
+        {
             mid = lo + (hi - lo)/2;
-            StdOut.println("mid = " + mid);
-            StdOut.println("key = " + a[mid]);
             if (comparator.compare(key, a[mid]) < 0)
                 hi = mid - 1;
             else if (comparator.compare(key,a[mid]) > 0)
                 lo = mid + 1;
-            else if (mid == 0 || comparator.compare(key, a[mid-1]) < 0)
+            else if (mid == 0 || comparator.compare(key, a[mid-1]) > 0)
                 return mid;
             else
                 hi = mid -1;
