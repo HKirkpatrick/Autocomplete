@@ -6,7 +6,8 @@ public class Autocomplete {
     // Returns all terms that start with the given prefix, in descending order of weight.
     public Term[] allMatches(String prefix) {
 		int r = prefix.length;
-		int i = BinarySearchDeluxe.firstIndexOf(terms, prefix, Terms.byPrefixOrder(r));
+		Term p = new Term(prefix, 0);
+		int i = BinarySearchDeluxe.firstIndexOf(terms, new Term(prefix, 0), Terms.byPrefixOrder(r));
 		int size = numberOfMatches(prefix);
 		Term[] matches = new Term[size];
 		for(; i < size; i++) {
@@ -18,9 +19,9 @@ public class Autocomplete {
     public int numberOfMatches(String prefix) {
 		int r = prefix.length;
 		int start, end;
-
-		start = BinarySearchDeluxe.firstIndexOf(terms, prefix, Terms.byPrefixOrder(r));	
-		end = BinarySearchDeluxe.lastIndexOf(terms, prefix, Terms.byPrefixOrder(r));
+		Term p = new Term(prefix, 0);
+		start = BinarySearchDeluxe.firstIndexOf(terms, p, Terms.byPrefixOrder(r));	
+		end = BinarySearchDeluxe.lastIndexOf(terms, p, Terms.byPrefixOrder(r));
 		if (start < 0 || end < 0) {
 			return 0;	
 		}
